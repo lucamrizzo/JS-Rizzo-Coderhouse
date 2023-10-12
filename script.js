@@ -1,67 +1,76 @@
-function login() {
-    let Contraseña = prompt('Ingresar contraseña');
-    if (Contraseña===''){
-    do{
-        alert('Debe ingresar una contraseña')
-        Contraseña = prompt('Ingrese su nueva contraseña');
-    }while (Contraseña==='')
-}
-    let intentos = 3;
-    let ingresar = false;
-    for (let i = intentos; i > 0; i--) {
-        let Ncontraseña = prompt('Ingresá la contraseña, Tenés ' + i + ' intentos.');
-        if (Ncontraseña === Contraseña) {
-            alert('Bienvenido/a al e-shop');
-            ingresar = true;
-            break;
-        } else {
-            alert('Error, Te quedan ' + (i - 1) + ' intentos.');
-        }
+//Array de productos
+const productos = [
+    {
+        producto: 'Bochas',
+        composicion: 'plastico',
+        stock: true,
+        precio: 500,
+    },
+    {
+        producto: 'Baldes',
+        composicion: 'plastico',
+        stock: true,
+        precio: 1000,
     }
-    return ingresar;
+];
+
+// Function para agregar productos
+const mostrarProductos = () => {
+
+    let mensaje = "\n Productos disponibles: \n";
+
+    productos.map((productos) => {
+        mensaje += `\n producto: ${productos.producto} \n composicion: ${productos.composicion} \n Precio: $${productos.precio} pesos ars. \n -------------------------------- \n`;
+    });
+
+    alert(mensaje);
 }
 
+//function AGREGAR producto
 
-if (login()){
-    let opcion= prompt('elija su producto:\n1. Bochas \n2. Rastrillos \n3. Baldes');
-    function compraProducto(opcion){
-        let producto
-        switch(opcion){
-            case '1':
-                producto='Bochas';
-                break;
-            case '2':
-                producto='Rastrillos';
-                break;
-            case '3':
-                producto='Baldes';
-                break;
-            default:
-                if (opcion===""){
-                    alert('No ingresaste ningun valor');
-                }else{
-                    alert('No ingresaste un producto');
-                    };
-                    do{
-                        opcion=prompt('elija nuevamente el producto deseado:\n1. Bochas \n2. Ratrillos \n3. Baldes')
-                        if (opcion==1){
-                            producto='Bochas';
-                            break;
-                        }else if (opcion==2){
-                            producto='Rastrillos';
-                            break;
-                        } else if (opcion==3){
-                            producto='Baldes';
-                            break;
-                        } else{
-                            alert('Opcion invalida')
-                        }
-                    } while(opcion==="" || opcion !==1 || opcion !== 3);
+const agregarProducto = () => {
+
+    let producto = prompt('Ingresa el producto del viaje, por favor.');
+    let composicion = prompt('Ingrese la composicion del viaje. \n Ejemplo: 3 dias y 2 noches.');
+    let precio = prompt('Ingrese el precio por favor.');
+
+
+    const obtenerproducto = () => {
+        let producto = prompt('Ingrese el producto deseado:');
+        if (producto === '') {
+            alert('Debe elegir un producto.');
+            return obtenerProducto()
         }
-        return Producto
+        return producto;
     }
-let Producto= compraProducto(opcion);
-alert('el Producto seleccionado es: ' + juego)
-} else{
-    alert('ERROR, No pudiste iniciar sesion, preciona F5 para reiniciar')
+
+    const obtenerComposicion = () => {
+        let composicion = prompt('Ingrese el material del cual esta compuesto el producto:');
+        if (composicion === '') {
+            alert('Debe elegir un material del producto');
+            return obtenercomposicion()
+        }
+        return composicion;
+    }
+
+    const obtenerPrecio = () => {
+        let precio = prompt('Ingresa el precio del producto:');
+        if (precio === '') {
+            alert('Debe ingresar un precio para el producto');
+            return obtenerPrecio()
+    }
+    return precio;
+    }
+
+    const nuevoViaje = {
+        producto: producto,
+        composicion: composicion,
+        precio: precio,
+    };
+
+    productos.push(nuevoViaje);
+
+
+mostrarproductos();
+
 }
